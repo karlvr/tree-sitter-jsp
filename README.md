@@ -24,10 +24,36 @@ dependencies: [
 ]
 ```
 
+Then add it to your target's dependencies:
+
+```swift
+.product(name: "TreeSitterJSP", package: "tree-sitter-jsp"),
+```
+
+Use the parser:
+
+```swift
+import TreeSitterJSP
+import SwiftTreeSitter
+
+let language = Language(tree_sitter_jsp())
+```
+
 ### Node.js
 
 ```sh
-npm install tree-sitter-jsp
+npm install tree-sitter tree-sitter-jsp
+```
+
+```javascript
+const Parser = require("tree-sitter");
+const JSP = require("tree-sitter-jsp");
+
+const parser = new Parser();
+parser.setLanguage(JSP);
+
+const tree = parser.parse("<%= request.getParameter(\"name\") %>");
+console.log(tree.rootNode.toString());
 ```
 
 ## Developing
